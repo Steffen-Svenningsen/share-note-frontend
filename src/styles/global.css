@@ -1,0 +1,11 @@
+@import "./_variables.css";
+@import "./textEditor.css";
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--editorBackgroundColor);
+    margin: 0;
+}
