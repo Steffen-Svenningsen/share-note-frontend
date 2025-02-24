@@ -1,5 +1,7 @@
 @import "./_variables.css";
 @import "./textEditor.css";
+@import "./header.css";
+@import "./footer.css";
 
 * {
     box-sizing: border-box;

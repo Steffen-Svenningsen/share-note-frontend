@@ -19,10 +19,9 @@
         display: flex;
         justify-content: center;
         position: sticky;
-        top: 0;
+        top: 78px;
         z-index: 1;
         background-color: var(--editorBackgroundColor);
-        box-shadow: 0 0 5px 0 var(--editorBoxShadow);
     }
 }
 
@@ -51,5 +50,11 @@
 
     #container .ql-toolbar.ql-snow {
         display: none;
+    }
+}
+
+@media (max-width: 583px) {
+    #container .ql-toolbar.ql-snow {
+        top: 130px;
     }
 }
