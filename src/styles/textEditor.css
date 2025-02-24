@@ -6,6 +6,7 @@
         margin: 1rem;
         box-shadow: 0 0 5px 0 var(--editorBoxShadow);
         background-color: var(--white);
+        color: var(--black);
     }
 
     .ql-container.ql-snow {
@@ -41,6 +42,11 @@
         margin: 0;
         box-shadow: none;
         align-self: flex-start;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
     }
 
     #container .ql-toolbar.ql-snow {
