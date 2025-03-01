@@ -34,3 +34,9 @@ header {
         height: 130px;
     }
 }
+
+@media print {
+    header {
+        display: none;
+    }
+}
