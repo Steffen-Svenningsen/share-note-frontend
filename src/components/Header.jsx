@@ -1,6 +1,6 @@
-import { Button } from "@chakra-ui/react"
 import logo from '../assets/images/share_note_logo_black.png'
-import { Share2, Download } from "lucide-react"
+import InviteDialog from "./InviteDialog"
+import ExportDialog from "./ExportDialog"
 
 export default function Header() {
   return (
@@ -9,8 +9,8 @@ export default function Header() {
             <img src={logo} width={220} alt="Share Note" />
         </a>
         <div className="btn-container">
-            <Button colorPalette={"gray"} size={"sm"}><Share2 />Invite others</Button>
-            <Button colorPalette={"gray"} size={"sm"}><Download />Export to PDF</Button>
+            <InviteDialog></InviteDialog>
+            <ExportDialog></ExportDialog>
         </div>
     </header>
   )
