@@ -3,10 +3,15 @@ import "quill/dist/quill.snow.css"
 import { useCallback, useEffect, useState } from "react"
 import { io } from "socket.io-client"
 import { useParams } from "react-router-dom"
+import "../styles/quill-custom-fonts.css"
+
+const FontAttributor = Quill.import('attributors/class/font');
+FontAttributor.whitelist = ['arial', 'roboto', 'lato', 'noto', 'open', 'inter'];
+Quill.register(FontAttributor, true);
 
 const toolbarOptions = [
     [{ header: [1, 2, 3, 4, 5, 6, false] }],
-    [{ font: [] }],
+    [{ font: FontAttributor.whitelist }],
     [{ list: "ordered" }, { list: "bullet" }],
     ["bold", "italic", "underline"],
     [{ color: [] }, { background: [] }],

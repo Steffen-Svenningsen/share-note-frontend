@@ -12,7 +12,7 @@ import {
 } from "./ui/dialog"
 import { Download } from "lucide-react"
 
-const InviteDialog = () => {
+const ExportDialog = () => {
   return (
     <DialogRoot>
       <DialogTrigger asChild>
@@ -23,19 +23,18 @@ const InviteDialog = () => {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Dialog Title</DialogTitle>
+          <DialogTitle>Export as PDF</DialogTitle>
         </DialogHeader>
         <DialogBody>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Save your document as a PDF by clicking the button below.
           </p>
         </DialogBody>
         <DialogFooter>
           <DialogActionTrigger asChild>
             <Button variant="outline">Cancel</Button>
           </DialogActionTrigger>
-          <Button>Save</Button>
+          <Button>Save as PDF</Button>
         </DialogFooter>
         <DialogCloseTrigger />
       </DialogContent>
@@ -43,4 +42,4 @@ const InviteDialog = () => {
   )
 }
 
-export default InviteDialog
+export default ExportDialog
