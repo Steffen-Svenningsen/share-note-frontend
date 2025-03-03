@@ -1,4 +1,4 @@
-import { Button } from "@chakra-ui/react"
+import { Button, HStack } from "@chakra-ui/react"
 import {
     DialogRoot,
     DialogTrigger,
@@ -11,8 +11,28 @@ import {
     DialogActionTrigger,
 } from "./ui/dialog"
 import { Download } from "lucide-react"
+import html2pdf from "html2pdf.js"
 
 const ExportDialog = () => {
+  const exportAsPDF = () => {
+    const editorContent = document.querySelector('.ql-editor');
+    
+    if (!editorContent) {
+      console.error("Editor content not found");
+      return;
+    }
+    
+    const options = {
+      margin: 10,
+      filename: 'share-note-document.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+    
+    html2pdf().set(options).from(editorContent).save();
+  }
+
   return (
     <DialogRoot>
       <DialogTrigger asChild>
@@ -23,7 +43,12 @@ const ExportDialog = () => {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Export as PDF</DialogTitle>
+          <DialogTitle>
+            <HStack>
+              Export as PDF
+              <Download />
+            </HStack>
+          </DialogTitle>
         </DialogHeader>
         <DialogBody>
           <p>
@@ -34,7 +59,7 @@ const ExportDialog = () => {
           <DialogActionTrigger asChild>
             <Button variant="outline">Cancel</Button>
           </DialogActionTrigger>
-          <Button>Save as PDF</Button>
+          <Button onClick={exportAsPDF}>Save as PDF</Button>
         </DialogFooter>
         <DialogCloseTrigger />
       </DialogContent>
