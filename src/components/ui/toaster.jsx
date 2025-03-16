@@ -32,6 +32,8 @@ import {
 
 export const toaster = createToaster({
   placement: 'bottom-end',
+  overlap: true,
+  max: 3,
   pauseOnPageIdle: true,
 })
 
