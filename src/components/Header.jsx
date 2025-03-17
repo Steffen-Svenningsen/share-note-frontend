@@ -5,6 +5,7 @@ import ExportDialog from "./ExportDialog"
 export default function Header() {
   return (
     <header>
+      <div className="header-content">
         <a href="/">
             <img src={logo} width={220} alt="Share Note" />
         </a>
@@ -12,6 +13,7 @@ export default function Header() {
             <InviteDialog></InviteDialog>
             <ExportDialog></ExportDialog>
         </div>
+      </div>
     </header>
   )
 }

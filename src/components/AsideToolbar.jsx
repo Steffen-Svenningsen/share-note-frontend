@@ -9,7 +9,7 @@ export default function AsideToolbar() {
     const [zoomLevel, setZoomLevel] = useState(100)
     
     const zoomIn = () => {
-        if (zoomLevel < 200) {
+        if (zoomLevel < 150) {
             const newZoom = zoomLevel + 10
             setZoomLevel(newZoom)
             applyZoom(newZoom)
@@ -35,9 +35,25 @@ export default function AsideToolbar() {
     const applyZoom = (zoom) => {
 
         const editorContainer = document.querySelector('.ql-container')
+        const editorWrapper = editorContainer?.parentElement;
+
         if (editorContainer) {
             editorContainer.style.transform = `scale(${zoom / 100})`
             editorContainer.style.transformOrigin = "top center"
+
+            if (editorWrapper) {
+                const contentHeight = editorContainer.scrollHeight
+                const newHeight = contentHeight * (zoom / 100)
+
+                if (zoom >= 100) {
+                    editorWrapper.style.minHeight = `calc(${newHeight}px + 3rem)`
+                } else {
+                    const newHeight = contentHeight * (zoom / 100)
+                    editorWrapper.style.height = `calc(${newHeight}px + 3rem)`
+                    editorContainer.style.height = "unset !important"
+                }
+                editorWrapper.style.overflowY = "visible"
+            }
         }
     }
 

@@ -3,7 +3,7 @@
 aside {
     position: fixed;
     right: 1rem;
-    top: 50%;
+    top: clamp(320px, 50%, 50%);
     transform: translateY(-50%);
     display: flex;
     flex-direction: column;
