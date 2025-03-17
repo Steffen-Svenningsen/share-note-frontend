@@ -46,3 +46,8 @@
     bottom: -6px;
     right: -6px;
 }
+
+/* Custom italic style */
+.ql-editor em {
+    font-style: italic !important;
+}
