@@ -18,15 +18,54 @@ Quill.register(ColorStyle, true);
 
 Quill.register('modules/imageResize', ImageResize);
 
+const Font = Quill.import('formats/font');
+const Size = Quill.import('formats/size');
+const Bold = Quill.import('formats/bold');
+const Italic = Quill.import('formats/italic');
+const Underline = Quill.import('formats/underline');
+const Strike = Quill.import('formats/strike');
+const Blockquote = Quill.import('formats/blockquote');
+const CodeBlock = Quill.import('formats/code-block');
+const Header = Quill.import('formats/header');
+const Indent = Quill.import('formats/indent');
+const List = Quill.import('formats/list');
+const Align = Quill.import('formats/align');
+const Script = Quill.import('formats/script');
+const Link = Quill.import('formats/link');
+const Image = Quill.import('formats/image');
+const Video = Quill.import('formats/video');
+const Formula = Quill.import('formats/formula');
+
+Quill.register({
+    'formats/font': Font,
+    'formats/size': Size,
+    'formats/bold': Bold,
+    'formats/italic': Italic,
+    'formats/underline': Underline,
+    'formats/strike': Strike,
+    'formats/blockquote': Blockquote,
+    'formats/code-block': CodeBlock,
+    'formats/header': Header,
+    'formats/indent': Indent,
+    'formats/list': List,
+    'formats/align': Align,
+    'formats/script': Script,
+    'formats/link': Link,
+    'formats/image': Image,
+    'formats/video': Video,
+    'formats/formula': Formula,
+}, true);
+
 const toolbarOptions = [
     [{ header: [1, 2, 3, 4, 5, 6, false] }],
     [{ font: FontAttributor.whitelist }],
     [{ list: "ordered" }, { list: "bullet" }],
-    ["bold", "italic", "underline"],
+    ["bold", "italic", "underline", "strike"],
     [{ color: [] }, { background: [] }],
     [{ script: "sub" }, { script: "super" }],
     [{ align: [] }],
-    ["image", "blockquote", "code-block"],
+    [{ indent: "-1" }, { indent: "+1" }],
+    ["link", "image", "video", "formula", "blockquote", "code-block"],
     ["clean"],
 ]
 
@@ -126,9 +165,10 @@ export default function TextEditor() {
                 
             },
             formats: [
-                'header', 'font', 'size', 'bold', 'italic', 'underline', 
-                'color', 'background', 'list', 'bullet', 'indent', 
-                'align', 'link', 'image', 'video', 'formula'
+                'header', 'font', 'size', 'bold', 'italic', 'underline', 'strike',
+                'color', 'background', 'script', 'list', 'bullet', 'indent',
+                'align', 'direction', 'link', 'image', 'video', 'formula',
+                'blockquote', 'code-block'
             ]
         })
 
