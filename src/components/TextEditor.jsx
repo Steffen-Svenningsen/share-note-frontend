@@ -51,6 +51,10 @@ export default function TextEditor() {
             quill.enable()
         })
 
+        if (quill.getText().trim() === '') {
+            quill.format('color', 'black')
+        }
+
         socket.emit('get-document', documentId)
     }, [socket, quill, documentId])
 
@@ -95,6 +99,30 @@ export default function TextEditor() {
         }
     }, [socket, quill])
 
+    useEffect(() => {
+        const style = document.createElement('style');
+        style.textContent = `
+            .ql-editor:not(.ql-blank) {
+                color: #000000;
+            }
+            /* Ensure color formats override the default */
+            .ql-editor .ql-color-black, 
+            .ql-editor [style*="color: rgb(0, 0, 0)"] {
+                color: #000000 !important;
+            }
+            /* Allow other colors to be applied normally */
+            .ql-editor [class*="ql-color-"]:not(.ql-color-black),
+            .ql-editor [style*="color:"]:not([style*="color: rgb(0, 0, 0)"]) {
+                /* This empty rule ensures these selectors have higher specificity */
+            }
+        `;
+        document.head.appendChild(style);
+        
+        return () => {
+            document.head.removeChild(style);
+        };
+    }, []);
+
     const wrapperRef = useCallback((wrapper) => {
         if (wrapper == null) return
 
@@ -107,7 +135,6 @@ export default function TextEditor() {
             formats: ['header', 'font', 'size', 'bold', 'italic', 'underline', 'color', 'background',
             'list', 'bullet', 'indent', 'align', 'link', 'image', 'video', 'formula']
         })
-        q.root.style.color = '#000000';
         q.disable()
         q.setText('Loading...')
         setQuill(q)
