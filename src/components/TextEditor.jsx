@@ -6,8 +6,13 @@ import { useParams } from "react-router-dom"
 import "../styles/quill-custom-fonts.css"
 
 const FontAttributor = Quill.import('attributors/class/font');
+const ColorAttributor = Quill.import('attributors/class/color');
+
 FontAttributor.whitelist = ['arial', 'roboto', 'lato', 'noto', 'open', 'inter'];
 Quill.register(FontAttributor, true);
+
+ColorAttributor.whitelist = ['black', ...ColorAttributor.whitelist || []];
+Quill.register(ColorAttributor, true);
 
 const toolbarOptions = [
     [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -96,7 +101,13 @@ export default function TextEditor() {
         wrapper.innerHTML = ""
         const editor = document.createElement('div')
         wrapper.append(editor)
-        const q = new Quill(editor, { theme: "snow", modules: { toolbar: toolbarOptions } })
+        const q = new Quill(editor, {
+            theme: "snow", 
+            modules: { toolbar: toolbarOptions },
+            formats: ['header', 'font', 'size', 'bold', 'italic', 'underline', 'color', 'background',
+            'list', 'bullet', 'indent', 'align', 'link', 'image', 'video', 'formula']
+        })
+        q.root.style.color = '#000000';
         q.disable()
         q.setText('Loading...')
         setQuill(q)
