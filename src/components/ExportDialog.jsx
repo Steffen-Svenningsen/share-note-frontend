@@ -22,15 +22,40 @@ const ExportDialog = () => {
       return;
     }
     
+    // Clone the editor content
+    const contentClone = editorContent.cloneNode(true);
+    
+    // Process the clone to ensure black text for elements without explicit color
+    const processTextNodes = (node) => {
+      if (node.nodeType === Node.TEXT_NODE && node.parentNode) {
+        if (!node.parentNode.style.color && !node.parentNode.classList.contains('ql-color-')) {
+          // No explicit color, set to black for printing
+          node.parentNode.style.color = '#000000';
+        }
+      } else if (node.nodeType === Node.ELEMENT_NODE) {
+        // Process child nodes
+        node.childNodes.forEach(processTextNodes);
+      }
+    };    
+    processTextNodes(contentClone);
+    
     const options = {
       margin: 10,
       filename: 'share-note-document.pdf',
       image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      html2canvas: { 
+        scale: 2,
+        useCORS: true,
+        letterRendering: true
+      },
+      jsPDF: { 
+        unit: 'mm', 
+        format: 'a4', 
+        orientation: 'portrait'
+      }
     };
     
-    html2pdf().set(options).from(editorContent).save();
+    html2pdf().set(options).from(contentClone).save();
   }
 
   return (
