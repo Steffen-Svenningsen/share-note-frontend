@@ -6,13 +6,13 @@ import { useParams } from "react-router-dom"
 import "../styles/quill-custom-fonts.css"
 
 const FontAttributor = Quill.import('attributors/class/font');
-const ColorAttributor = Quill.import('attributors/class/color');
-
 FontAttributor.whitelist = ['arial', 'roboto', 'lato', 'noto', 'open', 'inter'];
 Quill.register(FontAttributor, true);
 
-ColorAttributor.whitelist = ['black', ...ColorAttributor.whitelist || []];
-Quill.register(ColorAttributor, true);
+const ColorClass = Quill.import('attributors/class/color');
+const ColorStyle = Quill.import('attributors/style/color');
+Quill.register(ColorClass, true);
+Quill.register(ColorStyle, true);
 
 const toolbarOptions = [
     [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -50,10 +50,6 @@ export default function TextEditor() {
             quill.setContents(document)
             quill.enable()
         })
-
-        if (quill.getText().trim() === '') {
-            quill.format('color', 'black')
-        }
 
         socket.emit('get-document', documentId)
     }, [socket, quill, documentId])
@@ -100,28 +96,13 @@ export default function TextEditor() {
     }, [socket, quill])
 
     useEffect(() => {
-        const style = document.createElement('style');
-        style.textContent = `
-            .ql-editor:not(.ql-blank) {
-                color: #000000;
-            }
-            /* Ensure color formats override the default */
-            .ql-editor .ql-color-black, 
-            .ql-editor [style*="color: rgb(0, 0, 0)"] {
-                color: #000000 !important;
-            }
-            /* Allow other colors to be applied normally */
-            .ql-editor [class*="ql-color-"]:not(.ql-color-black),
-            .ql-editor [style*="color:"]:not([style*="color: rgb(0, 0, 0)"]) {
-                /* This empty rule ensures these selectors have higher specificity */
-            }
-        `;
-        document.head.appendChild(style);
+        if (quill == null) return;
         
-        return () => {
-            document.head.removeChild(style);
-        };
-    }, []);
+        const editorElement = document.querySelector('.ql-editor');
+        if (editorElement) {
+            editorElement.setAttribute('data-default-color', '#000000');
+        }
+    }, [quill]);
 
     const wrapperRef = useCallback((wrapper) => {
         if (wrapper == null) return
@@ -131,10 +112,20 @@ export default function TextEditor() {
         wrapper.append(editor)
         const q = new Quill(editor, {
             theme: "snow", 
-            modules: { toolbar: toolbarOptions },
-            formats: ['header', 'font', 'size', 'bold', 'italic', 'underline', 'color', 'background',
-            'list', 'bullet', 'indent', 'align', 'link', 'image', 'video', 'formula']
+            modules: { 
+                toolbar: toolbarOptions
+            },
+            formats: [
+                'header', 'font', 'size', 'bold', 'italic', 'underline', 
+                'color', 'background', 'list', 'bullet', 'indent', 
+                'align', 'link', 'image', 'video', 'formula'
+            ]
         })
+
+        const editorElement = q.root;
+        editorElement.style.color = '#000000';
+        
+        editorElement.classList.add('default-black-text');
         q.disable()
         q.setText('Loading...')
         setQuill(q)
