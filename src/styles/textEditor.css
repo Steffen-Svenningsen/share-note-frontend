@@ -52,9 +52,3 @@
         display: none;
     }
 }
-
-@media (max-width: 583px) {
-    #container .ql-toolbar.ql-snow {
-        top: 130px;
-    }
-}

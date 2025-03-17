@@ -33,12 +33,6 @@ header {
 
 }
 
-@media (max-width: 583px) {
-    header {
-        height: 130px;
-    }
-}
-
 @media print {
     header {
         display: none;
