@@ -1,9 +1,11 @@
 import Quill from "quill"
+import ImageResize from "quill-image-resize-module-react"
 import "quill/dist/quill.snow.css"
 import { useCallback, useEffect, useState } from "react"
 import { io } from "socket.io-client"
 import { useParams } from "react-router-dom"
 import "../styles/quill-custom-fonts.css"
+import "../styles/quill-custom.css"
 
 const FontAttributor = Quill.import('attributors/class/font');
 FontAttributor.whitelist = ['arial', 'roboto', 'lato', 'noto', 'open', 'inter'];
@@ -13,6 +15,8 @@ const ColorClass = Quill.import('attributors/class/color');
 const ColorStyle = Quill.import('attributors/style/color');
 Quill.register(ColorClass, true);
 Quill.register(ColorStyle, true);
+
+Quill.register('modules/imageResize', ImageResize);
 
 const toolbarOptions = [
     [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -35,7 +39,7 @@ export default function TextEditor() {
     const [quill, setQuill] = useState()
 
     useEffect(() => {
-        const s = io(import.meta.env.VITE_API_URL || 'http://localhost:3001')
+        const s = io(import.meta.env.VITE_API_URL || (window.location.hostname === 'localhost' ? '/' : 'http://localhost:3001'))
         setSocket(s)
 
         return () => {
@@ -113,7 +117,13 @@ export default function TextEditor() {
         const q = new Quill(editor, {
             theme: "snow", 
             modules: { 
-                toolbar: toolbarOptions
+                toolbar: toolbarOptions,
+                imageResize: {
+                    displaySize: true,
+                    displayStyles: true,
+                    modules: ['Resize', 'DisplaySize', 'Toolbar']
+                }
+                
             },
             formats: [
                 'header', 'font', 'size', 'bold', 'italic', 'underline', 
