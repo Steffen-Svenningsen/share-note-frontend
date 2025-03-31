@@ -1,5 +1,6 @@
 import Quill from "quill"
 import ImageResize from "quill-image-resize-module-react"
+import QuillImageDropAndPaste from 'quill-image-drop-and-paste'
 import "quill/dist/quill.snow.css"
 import { useCallback, useEffect, useState } from "react"
 import { io } from "socket.io-client"
@@ -17,6 +18,7 @@ Quill.register(ColorClass, true);
 Quill.register(ColorStyle, true);
 
 Quill.register('modules/imageResize', ImageResize);
+Quill.register('modules/imageDropAndPaste', QuillImageDropAndPaste);
 
 const Font = Quill.import('formats/font');
 const Size = Quill.import('formats/size');
@@ -33,8 +35,6 @@ const Align = Quill.import('formats/align');
 const Script = Quill.import('formats/script');
 const Link = Quill.import('formats/link');
 const Image = Quill.import('formats/image');
-const Video = Quill.import('formats/video');
-const Formula = Quill.import('formats/formula');
 
 Quill.register({
     'formats/font': Font,
@@ -52,8 +52,6 @@ Quill.register({
     'formats/script': Script,
     'formats/link': Link,
     'formats/image': Image,
-    'formats/video': Video,
-    'formats/formula': Formula,
 }, true);
 
 const toolbarOptions = [
@@ -65,8 +63,7 @@ const toolbarOptions = [
     [{ script: "sub" }, { script: "super" }],
     [{ align: [] }],
     [{ indent: "-1" }, { indent: "+1" }],
-    ["link", "image", "video", "formula", "blockquote", "code-block"],
-    ["clean"],
+    ["link", "image", "blockquote", "code-block"]
 ]
 
 const saveIntervalTime = 2000
@@ -161,13 +158,13 @@ export default function TextEditor() {
                     displaySize: true,
                     displayStyles: true,
                     modules: ['Resize', 'DisplaySize', 'Toolbar']
-                }
-                
+                },
+                imageDropAndPaste: true,
             },
             formats: [
                 'header', 'font', 'size', 'bold', 'italic', 'underline', 'strike',
                 'color', 'background', 'script', 'list', 'bullet', 'indent',
-                'align', 'direction', 'link', 'image', 'video', 'formula',
+                'align', 'direction', 'link', 'image',
                 'blockquote', 'code-block'
             ]
         })
