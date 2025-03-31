@@ -7,6 +7,10 @@
     box-sizing: border-box;
 }
 
+html {
+    background-color: var(--editorBackgroundColor);
+}
+
 body {
     background-color: var(--editorBackgroundColor);
     margin: 0;
