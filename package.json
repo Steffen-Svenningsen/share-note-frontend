@@ -16,6 +16,7 @@
     "lucide-react": "^0.475.0",
     "next-themes": "^0.4.4",
     "quill": "^2.0.3",
+    "quill-image-drop-and-paste": "^2.0.1",
     "quill-image-resize-module-react": "^3.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
