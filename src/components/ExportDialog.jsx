@@ -1,4 +1,4 @@
-import { Button, HStack } from "@chakra-ui/react"
+import { Button, HStack, Input } from "@chakra-ui/react"
 import {
     DialogRoot,
     DialogTrigger,
@@ -12,8 +12,11 @@ import {
 } from "./ui/dialog"
 import { Download } from "lucide-react"
 import html2pdf from "html2pdf.js"
+import { useState } from "react"
 
 const ExportDialog = () => {
+  const [documentTitle, setDocumentTitle] = useState('Untitled document')
+
   const exportAsPDF = () => {
     const editorContent = document.querySelector('.ql-editor');
     
@@ -41,7 +44,7 @@ const ExportDialog = () => {
     
     const options = {
       margin: 10,
-      filename: 'share-note-document.pdf',
+      filename: documentTitle,
       image: { type: 'jpeg', quality: 0.98 },
       html2canvas: { 
         scale: 2,
@@ -57,6 +60,10 @@ const ExportDialog = () => {
     
     html2pdf().set(options).from(contentClone).save();
   }
+
+  const handleTitleChange = (e) => {
+    setDocumentTitle(e.target.value);
+  };
 
   return (
     <DialogRoot>
@@ -76,6 +83,12 @@ const ExportDialog = () => {
           </DialogTitle>
         </DialogHeader>
         <DialogBody>
+          <Input 
+            placeholder="Name your file"
+            value={documentTitle}
+            onChange={handleTitleChange}
+            mb={4}
+          />
           <p>
             Save your document as a PDF by clicking the button below.
           </p>
