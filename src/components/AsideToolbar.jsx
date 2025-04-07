@@ -34,7 +34,7 @@ export default function AsideToolbar() {
 
     const applyZoom = (zoom) => {
 
-        const editorContainer = document.querySelector('.ql-container')
+        const editorContainer = document.querySelector('.ql-editor')
         const editorWrapper = editorContainer?.parentElement;
 
         if (editorContainer) {
