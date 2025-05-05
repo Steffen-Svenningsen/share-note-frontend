@@ -21,8 +21,3 @@
     }
 
 }
-
-.previous-button,
-.next-button {
-    border: 1px solid var(--gray);
-}

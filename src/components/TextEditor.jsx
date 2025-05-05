@@ -150,10 +150,47 @@ export default function TextEditor() {
         wrapper.innerHTML = ""
         const editor = document.createElement('div')
         wrapper.append(editor)
+
+        const imageHandler = () => {
+            const input = document.createElement('input')
+            input.setAttribute('type', 'file')
+            input.setAttribute('accept', 'image/*')
+            input.click();
+
+            input.onchange = async () => {
+                const file = input.files[0];
+                if (!file) return;
+                
+                // Check file size - limit to 1MB for example
+                if (file.size > 1024 * 1024) {
+                    alert('Image is too large. Please select an image under 1MB.');
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = () => {
+                    // Get the cursor position
+                    const range = q.getSelection(true);
+                    
+                    // Insert the image at cursor position
+                    q.insertEmbed(range.index, 'image', reader.result);
+                    
+                    // Move cursor after the image
+                    q.setSelection(range.index + 1);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
         const q = new Quill(editor, {
             theme: "snow", 
             modules: { 
-                toolbar: toolbarOptions,
+                toolbar: {
+                    container: toolbarOptions,
+                    handlers: {
+                        image: imageHandler,
+                    }
+                },
                 imageResize: {
                     displaySize: true,
                     displayStyles: true,
@@ -178,6 +215,8 @@ export default function TextEditor() {
         setQuill(q)
     }, [])
     return (
-        <div id="container" ref={wrapperRef}></div>
+        <>
+            <div id="container" ref={wrapperRef}></div>
+        </>
     )
 }

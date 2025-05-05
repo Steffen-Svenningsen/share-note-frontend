@@ -30,8 +30,14 @@ import {
   createToaster,
 } from '@chakra-ui/react'
 
+let toasterPlacement = 'bottom-end';
+
+if (typeof window !== 'undefined' && window.innerWidth < 768) {
+  toasterPlacement = 'top-center'
+}
+
 export const toaster = createToaster({
-  placement: 'bottom-end',
+  placement: toasterPlacement,
   overlap: true,
   max: 3,
   pauseOnPageIdle: true,

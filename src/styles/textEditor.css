@@ -22,11 +22,20 @@
         top: 78px;
         z-index: 1;
         background-color: var(--editorBackgroundColor);
+        overflow-x: scroll;
     }
 }
 
 @page {
     margin: 1in;
+}
+
+@media (max-width: 550px) {
+    #container {
+        .ql-toolbar.ql-snow {
+            justify-content: left;
+        }
+    }
 }
 
 @media print {
