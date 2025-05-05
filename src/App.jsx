@@ -9,11 +9,9 @@ import { v4 as uuidV4 } from "uuid"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
 import AsideToolbar from "./components/AsideToolbar"
-import DesktopOnly from "./components/DesktopOnly"
 
 function App() {
   return (
-    <DesktopOnly>
       <Router>
         <Header />
         <Routes>
@@ -23,7 +21,6 @@ function App() {
         <AsideToolbar />
         <Footer />
       </Router>
-    </DesktopOnly>
   )
 }
 
