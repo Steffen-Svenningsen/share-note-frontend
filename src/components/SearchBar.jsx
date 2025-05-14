@@ -32,7 +32,27 @@ const SearchBar = ({showShortcut = false}) => {
         if (e) e.preventDefault();
         if (searchQuery.trim() === '') return;
         
-        //search logic
+        const quill = window.quill;
+        if (!quill) {
+            console.error("Quill instance not found");
+            return;
+        }
+        
+        const text = quill.getText();
+        
+        const index = text.toLowerCase().indexOf(searchQuery.toLowerCase());
+        
+        if (index !== -1) {
+            quill.setSelection(index, searchQuery.length);
+            
+            const bounds = quill.getBounds(index);
+            const editorElement = document.querySelector('.ql-editor');
+            if (editorElement) {
+                editorElement.scrollTop = bounds.top - 50;
+            }
+        } else {
+            alert("No matches found");
+        }
     };
 
     // Focus the input when dialog opens
@@ -56,17 +76,24 @@ const SearchBar = ({showShortcut = false}) => {
             <DialogContent>
                 <DialogHeader>
                     <form onSubmit={handleSearch}>
-                        <Input 
-                            id="search-input"
-                            ref={inputRef}
-                            placeholder="Search your file..." 
-                            value={searchQuery} 
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                        />
+                        <HStack>
+                            <Input 
+                                id="search-input"
+                                ref={inputRef}
+                                placeholder="Search your file..." 
+                                value={searchQuery} 
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                            />
+                            <Button type="submit" size="md">
+                                Search
+                            </Button>
+                        </HStack>
                     </form>
                 </DialogHeader>
                 <DialogFooter>
-                    <HStack className="keyboard-shortcut"><span>esc</span> to close</HStack>
+                    <HStack className="keyboard-shortcut">
+                        <span>esc</span> to close
+                    </HStack>
                 </DialogFooter>
             </DialogContent>
         </DialogRoot>

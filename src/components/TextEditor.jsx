@@ -144,6 +144,16 @@ export default function TextEditor() {
         }
     }, [quill]);
 
+    useEffect(() => {
+        if (quill) {
+            window.quill = quill;
+        }
+        
+        return () => {
+            window.quill = undefined;
+        };
+    }, [quill]);
+
     const wrapperRef = useCallback((wrapper) => {
         if (wrapper == null) return
 
