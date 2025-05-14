@@ -31,3 +31,10 @@ div[role="dialog"] {
     margin-left: 1rem;
     margin-right: 1rem;
 }
+
+@media (max-width: 768px) {
+    div[data-scope="toast"] {
+        top: 1rem !important;
+        height: fit-content;
+    }
+}
