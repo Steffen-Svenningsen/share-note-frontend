@@ -22,7 +22,6 @@
         top: 78px;
         z-index: 1;
         background-color: var(--editorBackgroundColor);
-        overflow-x: scroll;
     }
 }
 
@@ -34,6 +33,7 @@
     #container {
         .ql-toolbar.ql-snow {
             justify-content: left;
+            overflow: scroll;
         }
     }
 }

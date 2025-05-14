@@ -25,9 +25,9 @@ const Size = Quill.import('formats/size');
 const Bold = Quill.import('formats/bold');
 const Italic = Quill.import('formats/italic');
 const Underline = Quill.import('formats/underline');
-const Strike = Quill.import('formats/strike');
-const Blockquote = Quill.import('formats/blockquote');
-const CodeBlock = Quill.import('formats/code-block');
+// const Strike = Quill.import('formats/strike');
+// const Blockquote = Quill.import('formats/blockquote');
+// const CodeBlock = Quill.import('formats/code-block');
 const Header = Quill.import('formats/header');
 const Indent = Quill.import('formats/indent');
 const List = Quill.import('formats/list');
@@ -42,9 +42,9 @@ Quill.register({
     'formats/bold': Bold,
     'formats/italic': Italic,
     'formats/underline': Underline,
-    'formats/strike': Strike,
-    'formats/blockquote': Blockquote,
-    'formats/code-block': CodeBlock,
+    // 'formats/strike': Strike,
+    // 'formats/blockquote': Blockquote,
+    // 'formats/code-block': CodeBlock,
     'formats/header': Header,
     'formats/indent': Indent,
     'formats/list': List,
@@ -58,12 +58,12 @@ const toolbarOptions = [
     [{ header: [1, 2, 3, 4, 5, 6, false] }],
     [{ font: FontAttributor.whitelist }],
     [{ list: "ordered" }, { list: "bullet" }],
-    ["bold", "italic", "underline", "strike"],
-    [{ color: [] }, { background: [] }],
+    ["bold", "italic", "underline"],
+    [{ color: [] }],
     [{ script: "sub" }, { script: "super" }],
     [{ align: [] }],
     [{ indent: "-1" }, { indent: "+1" }],
-    ["link", "image", "blockquote", "code-block"]
+    ["link", "image"]
 ]
 
 const saveIntervalTime = 2000
