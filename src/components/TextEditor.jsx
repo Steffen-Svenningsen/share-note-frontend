@@ -171,9 +171,9 @@ export default function TextEditor() {
                 const file = input.files[0];
                 if (!file) return;
                 
-                // Check file size - limit to 1MB for example
-                if (file.size > 1024 * 1024) {
-                    alert('Image is too large. Please select an image under 1MB.');
+                // Check file size - limit to 500kb for example
+                if (file.size > 500 * 1024) {
+                    alert('Image is too large. Please select an image under 500kb. Hint: Compress the image with Squoosh at https://squoosh.app/');
                     return;
                 }
 
