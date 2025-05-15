@@ -62,6 +62,30 @@ export default function AsideToolbar() {
         }
     }
 
+    const addNewLine = () => {
+        const quill = window.quill;
+        if (!quill) {
+            console.error("Quill instance not found")
+            return
+        }
+
+        const length = quill.getLength()
+
+        quill.insertText(length, '\n')
+
+        quill.setSelection(length + 1, 0)
+
+
+        quill.focus()
+
+        const bounds = quill.getBounds(length + 1)
+        const editorElement = document.querySelector('.ql-editor')
+
+        if (editorElement) {
+            editorElement.scrollTop = bounds.top - editorElement.clientHeight / 2;
+        }
+    }
+
     return (
         <>
             <aside>
@@ -78,7 +102,7 @@ export default function AsideToolbar() {
                         <Button variant={'ghost'}>
                             <Pen size={14} />
                         </Button>
-                        <Button variant={'ghost'}>
+                        <Button variant={'ghost'} onClick={addNewLine}>
                             <Type size={14} />
                         </Button>
                     </div>
