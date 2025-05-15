@@ -19,5 +19,24 @@
         font-size: 12px;
         background: var(--darkGray);
     }
+}
 
+.ks-mobile {
+    display: none !important;
+}
+
+.search-header {
+    p {
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .ks-desktop {
+        display: none !important;
+    }
+
+    .ks-mobile {
+        display: block !important;
+    }
 }

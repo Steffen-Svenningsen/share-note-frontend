@@ -1,10 +1,12 @@
-/* eslint-disable react/prop-types */
-import { Button, HStack } from "@chakra-ui/react"
+import { Button, DialogDescription, HStack } from "@chakra-ui/react"
 import {
     DialogRoot,
     DialogTrigger,
     DialogContent,
+    DialogCloseTrigger,
+    DialogTitle,
     DialogHeader,
+    DialogBody,
     DialogFooter,
 } from "./ui/dialog"
 import { Input } from "@chakra-ui/react"
@@ -116,7 +118,13 @@ const SearchBar = ({showShortcut = false}) => {
                 </Button>
             </DialogTrigger>
             <DialogContent>
-                <DialogHeader>
+                <DialogHeader className="search-header">
+                    <DialogTitle>Search your file</DialogTitle>
+                    <p>
+                        Searches for the first instance of the search term in the document.
+                    </p>
+                </DialogHeader>
+                <DialogBody>
                     <form onSubmit={handleSearch}>
                         <HStack>
                             <Input 
@@ -131,12 +139,16 @@ const SearchBar = ({showShortcut = false}) => {
                             </Button>
                         </HStack>
                     </form>
-                </DialogHeader>
+                </DialogBody>
                 <DialogFooter>
-                    <HStack className="keyboard-shortcut">
+                    <HStack className="keyboard-shortcut ks-desktop">
                         <span>esc</span> to close
                     </HStack>
+                    <HStack className="keyboard-shortcut ks-mobile">
+                        <span>click</span> outside to close
+                    </HStack>
                 </DialogFooter>
+                <DialogCloseTrigger />
             </DialogContent>
         </DialogRoot>
     )
