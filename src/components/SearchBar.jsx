@@ -38,24 +38,66 @@ const SearchBar = ({showShortcut = false}) => {
             return;
         }
         
-        const text = quill.getText();
+        const delta = quill.getContents();
+        const searchTerm = searchQuery;
         
-        const index = text.toLowerCase().indexOf(searchQuery.toLowerCase());
-        
-        if (index !== -1) {
-            quill.setSelection(index, searchQuery.length);
+        const findInDelta = (delta, searchTerm) => {
+            let currentIndex = 0;
+            let matches = [];
             
-            const bounds = quill.getBounds(index);
-            const editorElement = document.querySelector('.ql-editor');
-            if (editorElement) {
-                editorElement.scrollTop = bounds.top - 50;
-            }
-        } else {
-            alert("No matches found");
+            delta.ops.forEach(op => {
+                if (typeof op.insert === 'string') {
+                    const text = op.insert;
+                    let textIndex = 0;
+                    
+                    while (textIndex < text.length) {
+                        const matchPos = text.indexOf(searchTerm, textIndex);
+                        if (matchPos === -1) break;
+                        
+                        matches.push({
+                            index: currentIndex + matchPos,
+                            length: searchTerm.length
+                        });
+                        
+                        textIndex = matchPos + 1;
+                    }
+                    
+                    currentIndex += text.length;
+                } else {
+                    currentIndex += 1;
+                }
+            });
+            
+            return matches;
+        };
+        
+        const matches = findInDelta(delta, searchTerm);
+        
+        if (matches.length > 0) {
+            const match = matches[0];
+            
+            quill.setSelection(match.index, match.length);
+            
+            setTimeout(() => {
+                const selection = document.getSelection();
+                if (selection && selection.rangeCount > 0) {
+                    const range = selection.getRangeAt(0);
+                    const rect = range.getBoundingClientRect();
+                    
+                    if (rect) {
+                        const selectedElement = range.startContainer.parentElement;
+                        if (selectedElement) {
+                            selectedElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'center'
+                            });
+                        }
+                    }
+                }
+            }, 100);
         }
     };
 
-    // Focus the input when dialog opens
     const handleDialogOpen = () => {
         setTimeout(() => {
             if (inputRef.current) {
