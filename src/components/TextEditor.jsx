@@ -210,7 +210,7 @@ export default function TextEditor() {
             },
             formats: [
                 'header', 'font', 'size', 'bold', 'italic', 'underline', 'strike',
-                'color', 'background', 'script', 'list', 'bullet', 'indent',
+                'color', 'background', 'script', 'list', 'indent',
                 'align', 'direction', 'link', 'image',
                 'blockquote', 'code-block'
             ]
