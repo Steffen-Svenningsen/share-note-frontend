@@ -30,8 +30,12 @@ jobs:
       run: npm run format:check
       continue-on-error: true
     
-    - name: Security audit
+    - name: Security audit (Critical & High only)
       run: npm audit --audit-level high
+
+    - name: Security audit (Full report for info)
+      run: npm audit
+      continue-on-error: true
     
     - name: Check for outdated dependencies
       run: npm outdated
