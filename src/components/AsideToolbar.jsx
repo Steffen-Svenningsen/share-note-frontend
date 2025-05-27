@@ -1,7 +1,7 @@
 import '../styles/aside.css'
 import { Button } from '@chakra-ui/react'
 import { Toaster, toaster } from './ui/toaster'
-import { ZoomIn, ZoomOut, Pen, Type, Eye, EyeOff } from 'lucide-react'
+import { ZoomIn, ZoomOut, Type, Eye, EyeOff } from 'lucide-react'
 import { useState } from 'react'
 
 export default function AsideToolbar() {
@@ -104,9 +104,9 @@ export default function AsideToolbar() {
                 <ZoomIn size={14} />
               </Button>
             </div>
-            <Button variant={'ghost'}>
+            {/* <Button variant={'ghost'}>
               <Pen size={14} />
-            </Button>
+            </Button> */}
             <Button variant={'ghost'} onClick={addNewLine}>
               <Type size={14} />
             </Button>
