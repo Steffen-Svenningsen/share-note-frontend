@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { Menu, Button, Portal } from '@chakra-ui/react'
 
 export default function Header() {
-  const unusedVar = 'fail'
+  const unusedVar = ;
   const [hamburgerMenu, setHamburgerMenu] = useState(true)
 
   useEffect(() => {
