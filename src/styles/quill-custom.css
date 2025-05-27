@@ -1,53 +1,53 @@
 /* Improve the appearance of resize handles */
 .ql-editor .image-resizer {
-    box-sizing: border-box;
-    position: absolute;
-    border: 1px dashed #444;
-    background: transparent;
+  box-sizing: border-box;
+  position: absolute;
+  border: 1px dashed #444;
+  background: transparent;
 }
 
 .ql-editor .image-resizer.focused {
-    border: 1px solid #4a9df6;
+  border: 1px solid #4a9df6;
 }
 
 .ql-editor .image-resizer .handle {
-    box-sizing: border-box;
-    position: absolute;
-    background-color: #4a9df6;
-    border: 1px solid white;
-    height: 12px;
-    width: 12px;
+  box-sizing: border-box;
+  position: absolute;
+  background-color: #4a9df6;
+  border: 1px solid white;
+  height: 12px;
+  width: 12px;
 }
 
 .ql-editor .image-resizer .handle.nw {
-    border-radius: 3px 0 0 0;
-    cursor: nwse-resize;
-    left: -6px;
-    top: -6px;
+  border-radius: 3px 0 0 0;
+  cursor: nwse-resize;
+  left: -6px;
+  top: -6px;
 }
 
 .ql-editor .image-resizer .handle.ne {
-    border-radius: 0 3px 0 0;
-    cursor: nesw-resize;
-    right: -6px;
-    top: -6px;
+  border-radius: 0 3px 0 0;
+  cursor: nesw-resize;
+  right: -6px;
+  top: -6px;
 }
 
 .ql-editor .image-resizer .handle.sw {
-    border-radius: 0 0 0 3px;
-    cursor: nesw-resize;
-    bottom: -6px;
-    left: -6px;
+  border-radius: 0 0 0 3px;
+  cursor: nesw-resize;
+  bottom: -6px;
+  left: -6px;
 }
 
 .ql-editor .image-resizer .handle.se {
-    border-radius: 0 0 3px 0;
-    cursor: nwse-resize;
-    bottom: -6px;
-    right: -6px;
+  border-radius: 0 0 3px 0;
+  cursor: nwse-resize;
+  bottom: -6px;
+  right: -6px;
 }
 
 /* Custom italic style */
 .ql-editor em {
-    font-style: italic !important;
+  font-style: italic !important;
 }

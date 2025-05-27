@@ -1,42 +1,42 @@
 .button-span {
-    font-size: 10px;
-    padding: 0.25rem;
-    border-radius: 0.25rem;
-    border: 1px solid var(--gray);
-    height: 12px;
-    line-height: normal;
-    box-sizing: content-box;
+  font-size: 10px;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--gray);
+  height: 12px;
+  line-height: normal;
+  box-sizing: content-box;
 }
 
 .keyboard-shortcut {
-    opacity: 0.75;
+  opacity: 0.75;
 
-    span {
-        padding: 0.25rem;
-        border-radius: 0.25rem;
-        border: 1px solid var(--white);
-        line-height: normal;
-        font-size: 12px;
-        background: var(--darkGray);
-    }
+  span {
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--white);
+    line-height: normal;
+    font-size: 12px;
+    background: var(--darkGray);
+  }
 }
 
 .ks-mobile {
-    display: none !important;
+  display: none !important;
 }
 
 .search-header {
-    p {
-        margin-top: 1rem;
-    }
+  p {
+    margin-top: 1rem;
+  }
 }
 
 @media (max-width: 768px) {
-    .ks-desktop {
-        display: none !important;
-    }
+  .ks-desktop {
+    display: none !important;
+  }
 
-    .ks-mobile {
-        display: block !important;
-    }
+  .ks-mobile {
+    display: block !important;
+  }
 }

@@ -30,7 +30,7 @@ import {
   createToaster,
 } from '@chakra-ui/react'
 
-let toasterPlacement = 'bottom-end';
+let toasterPlacement = 'bottom-end'
 
 if (typeof window !== 'undefined' && window.innerWidth < 768) {
   toasterPlacement = 'top-center'
@@ -47,14 +47,14 @@ export const Toaster = () => {
   return (
     <Portal>
       <ChakraToaster toaster={toaster} insetInline={{ mdDown: '4' }}>
-        {(toast) => (
+        {toast => (
           <Toast.Root width={{ md: 'sm' }}>
             {toast.type === 'loading' ? (
-              <Spinner size='sm' color='blue.solid' />
+              <Spinner size="sm" color="blue.solid" />
             ) : (
               <Toast.Indicator />
             )}
-            <Stack gap='1' flex='1' maxWidth='100%'>
+            <Stack gap="1" flex="1" maxWidth="100%">
               {toast.title && <Toast.Title>{toast.title}</Toast.Title>}
               {toast.description && (
                 <Toast.Description>{toast.description}</Toast.Description>
@@ -66,9 +66,9 @@ export const Toaster = () => {
             {_optionalChain([
               toast,
               'access',
-              (_) => _.meta,
+              _ => _.meta,
               'optionalAccess',
-              (_2) => _2.closable,
+              _2 => _2.closable,
             ]) && <Toast.CloseTrigger />}
           </Toast.Root>
         )}

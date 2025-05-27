@@ -8,7 +8,7 @@ import { LuMoon, LuSun } from 'react-icons/lu'
 
 export function ColorModeProvider(props) {
   return (
-    <ThemeProvider attribute='class' disableTransitionOnChange {...props} />
+    <ThemeProvider attribute="class" disableTransitionOnChange {...props} />
   )
 }
 
@@ -38,12 +38,12 @@ export const ColorModeButton = React.forwardRef(
   function ColorModeButton(props, ref) {
     const { toggleColorMode } = useColorMode()
     return (
-      <ClientOnly fallback={<Skeleton boxSize='8' />}>
+      <ClientOnly fallback={<Skeleton boxSize="8" />}>
         <IconButton
           onClick={toggleColorMode}
-          variant='ghost'
-          aria-label='Toggle color mode'
-          size='sm'
+          variant="ghost"
+          aria-label="Toggle color mode"
+          size="sm"
           ref={ref}
           {...props}
           css={{
@@ -57,17 +57,17 @@ export const ColorModeButton = React.forwardRef(
         </IconButton>
       </ClientOnly>
     )
-  },
+  }
 )
 
 export const LightMode = React.forwardRef(function LightMode(props, ref) {
   return (
     <Span
-      color='fg'
-      display='contents'
-      className='chakra-theme light'
-      colorPalette='gray'
-      colorScheme='light'
+      color="fg"
+      display="contents"
+      className="chakra-theme light"
+      colorPalette="gray"
+      colorScheme="light"
       ref={ref}
       {...props}
     />
@@ -77,11 +77,11 @@ export const LightMode = React.forwardRef(function LightMode(props, ref) {
 export const DarkMode = React.forwardRef(function DarkMode(props, ref) {
   return (
     <Span
-      color='fg'
-      display='contents'
-      className='chakra-theme dark'
-      colorPalette='gray'
-      colorScheme='dark'
+      color="fg"
+      display="contents"
+      className="chakra-theme dark"
+      colorPalette="gray"
+      colorScheme="dark"
       ref={ref}
       {...props}
     />

@@ -1,52 +1,52 @@
-@import "./searchBar.css";
+@import './searchBar.css';
 
 header {
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    background-color: var(--headerBackgroundColor);
-    height: 78px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: var(--headerBackgroundColor);
+  height: 78px;
 
-    .header-content {
-        display: flex;
-        gap: 1rem;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem;
-        flex-wrap: wrap;
-        max-width: 1280px;
-        margin: 0 auto;
-        
-        .btn-container {
-            display: flex;
-            gap: 1rem;
-    
-            button {
-                border: 1px solid var(--buttonBorderColor);
-                transition: 0.2s;
-                opacity: 0.7;
-    
-                &:hover {
-                    opacity: 1;
-                }
-            }
-        }
-    }
+  .header-content {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    flex-wrap: wrap;
+    max-width: 1280px;
+    margin: 0 auto;
 
-    .hamburger-menu-btn {
+    .btn-container {
+      display: flex;
+      gap: 1rem;
+
+      button {
         border: 1px solid var(--buttonBorderColor);
+        transition: 0.2s;
         opacity: 0.7;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
     }
+  }
+
+  .hamburger-menu-btn {
+    border: 1px solid var(--buttonBorderColor);
+    opacity: 0.7;
+  }
 }
 
 @media print {
-    header {
-        display: none;
-    }
+  header {
+    display: none;
+  }
 }
 
 @media (max-width: 738px) {
-    .desktop-menu {
-        display: none;
-    }
+  .desktop-menu {
+    display: none;
+  }
 }

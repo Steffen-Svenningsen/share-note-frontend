@@ -1,70 +1,70 @@
 #container {
-    .ql-editor {
-        width: 8.5in;
-        min-height: 11in;
-        padding: 1in;
-        margin: 1rem;
-        box-shadow: 0 0 5px 0 var(--editorBoxShadow);
-        background-color: var(--white);
-        color: var(--black);
-    }
+  .ql-editor {
+    width: 8.5in;
+    min-height: 11in;
+    padding: 1in;
+    margin: 1rem;
+    box-shadow: 0 0 5px 0 var(--editorBoxShadow);
+    background-color: var(--white);
+    color: var(--black);
+  }
 
-    .ql-container.ql-snow {
-        border: none;
-        display: flex;
-        justify-content: center;
-    }
+  .ql-container.ql-snow {
+    border: none;
+    display: flex;
+    justify-content: center;
+  }
 
-    .ql-toolbar.ql-snow {
-        display: flex;
-        justify-content: center;
-        position: sticky;
-        top: 78px;
-        z-index: 1;
-        background-color: var(--editorBackgroundColor);
-    }
+  .ql-toolbar.ql-snow {
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    top: 78px;
+    z-index: 1;
+    background-color: var(--editorBackgroundColor);
+  }
 }
 
 @page {
-    margin: 1in;
+  margin: 1in;
 }
 
 @media (max-width: 550px) {
-    #container {
-        .ql-toolbar.ql-snow {
-            justify-content: left;
-            overflow: scroll;
-        }
+  #container {
+    .ql-toolbar.ql-snow {
+      justify-content: left;
+      overflow: scroll;
     }
+  }
 }
 
 @media print {
-    body {
-        background: none;
-    }
+  body {
+    background: none;
+  }
 
-    #container .ql-editor {
-        width: 6.5in;
-        height: 9in;
-        padding: 0;
-        margin: 0;
-        box-shadow: none;
-        align-self: flex-start;
-        scrollbar-width: none;
+  #container .ql-editor {
+    width: 6.5in;
+    height: 9in;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    align-self: flex-start;
+    scrollbar-width: none;
 
-        &::-webkit-scrollbar {
-            display: none;
-        }
+    &::-webkit-scrollbar {
+      display: none;
     }
+  }
 
-    #container .ql-toolbar.ql-snow {
-        display: none;
-    }
+  #container .ql-toolbar.ql-snow {
+    display: none;
+  }
 }
 
 @media (max-width: 738px) {
-    .ql-container.ql-snow {
-        display: block !important;
-        overflow: scroll;
-    }
+  .ql-container.ql-snow {
+    display: block !important;
+    overflow: scroll;
+  }
 }

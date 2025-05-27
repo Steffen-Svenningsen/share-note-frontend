@@ -22,25 +22,25 @@ export const DialogContent = React.forwardRef(
         </ChakraDialog.Positioner>
       </Portal>
     )
-  },
+  }
 )
 
 export const DialogCloseTrigger = React.forwardRef(
   function DialogCloseTrigger(props, ref) {
     return (
       <ChakraDialog.CloseTrigger
-        position='absolute'
-        top='2'
-        insetEnd='2'
+        position="absolute"
+        top="2"
+        insetEnd="2"
         {...props}
         asChild
       >
-        <CloseButton size='sm' ref={ref}>
+        <CloseButton size="sm" ref={ref}>
           {props.children}
         </CloseButton>
       </ChakraDialog.CloseTrigger>
     )
-  },
+  }
 )
 
 export const DialogRoot = ChakraDialog.Root
