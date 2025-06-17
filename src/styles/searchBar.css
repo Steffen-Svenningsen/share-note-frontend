@@ -26,9 +26,7 @@
 }
 
 .search-header {
-  p {
-    margin-top: 1rem;
-  }
+  flex-direction: column !important;
 }
 
 @media (max-width: 768px) {
