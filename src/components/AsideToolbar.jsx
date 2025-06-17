@@ -1,7 +1,7 @@
 import '../styles/aside.css'
 import { Button } from '@chakra-ui/react'
 import { Toaster, toaster } from './ui/toaster'
-import { ZoomIn, ZoomOut, Type, Eye, EyeOff } from 'lucide-react'
+import { ZoomIn, ZoomOut, Type, Eye, EyeOff, Save } from 'lucide-react'
 import { useState } from 'react'
 
 export default function AsideToolbar() {
@@ -10,6 +10,17 @@ export default function AsideToolbar() {
 
   const handleControls = () => {
     setMainControls(prev => !prev)
+  }
+
+  const toggleSaveHint = () => {
+    toaster.create({
+      title: "How to save - for now..",
+      description: "You can't save within the app right now, but you can bookmark this page to keep track of it. Just press Ctrl + D (Windows) or Cmd + D (Mac), or use your browser’s bookmark option.",
+      duration: 20000,
+      meta: {
+        closable: true,
+      }
+    })
   }
 
   const zoomIn = () => {
@@ -109,6 +120,9 @@ export default function AsideToolbar() {
             </Button> */}
             <Button variant={'ghost'} onClick={addNewLine}>
               <Type size={14} />
+            </Button>
+            <Button variant={'ghost'} onClick={toggleSaveHint}>
+              <Save size={14} />
             </Button>
           </div>
         )}
